@@ -335,7 +335,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A14D99D0FC3867EA738AE277 /* Pods-My-Weather.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-CAN";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4UFPQL64P5;
@@ -355,7 +355,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1EAD8D52F9843698739ACDA4 /* Pods-My-Weather.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-CAN";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4UFPQL64P5;
@@ -491,7 +491,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A14D99D0FC3867EA738AE277 /* Pods-My-Weather.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-AUS";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4UFPQL64P5;
@@ -511,7 +511,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1EAD8D52F9843698739ACDA4 /* Pods-My-Weather.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-AUS";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4UFPQL64P5;
