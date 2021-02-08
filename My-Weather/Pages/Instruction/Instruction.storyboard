@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Instruction Location View Controller-->
+        <scene sceneID="HQL-RZ-yKW">
+            <objects>
+                <viewController storyboardIdentifier="InstructionLocationViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="93z-Og-Eks" customClass="InstructionLocationViewController" customModule="My_Weather_AUS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FAc-Rc-lCj">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ne2-LD-9LV">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3te-eM-ccw">
+                                <rect key="frame" x="41.5" y="370" width="331" height="166"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We can provide the latest weather of yoour current location. Please let us know your current location." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eb5-8v-uU2">
+                                        <rect key="frame" x="10" y="10" width="311" height="82"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IGi-NU-xcM">
+                                        <rect key="frame" x="142" y="122" width="47" height="34"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                        <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                        <state key="normal" title="Next"/>
+                                        <connections>
+                                            <action selector="btnNextClicked:" destination="93z-Og-Eks" eventType="touchUpInside" id="xfu-d7-pum"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="IGi-NU-xcM" firstAttribute="centerX" secondItem="3te-eM-ccw" secondAttribute="centerX" id="0qv-bG-mcI"/>
+                                    <constraint firstItem="IGi-NU-xcM" firstAttribute="top" secondItem="eb5-8v-uU2" secondAttribute="bottom" constant="30" id="4BW-9P-Nx4"/>
+                                    <constraint firstAttribute="trailing" secondItem="eb5-8v-uU2" secondAttribute="trailing" constant="10" id="W7A-k8-QfR"/>
+                                    <constraint firstAttribute="bottom" secondItem="IGi-NU-xcM" secondAttribute="bottom" constant="10" id="asD-He-afr"/>
+                                    <constraint firstItem="eb5-8v-uU2" firstAttribute="leading" secondItem="3te-eM-ccw" secondAttribute="leading" constant="10" id="kr7-Yb-GtO"/>
+                                    <constraint firstItem="eb5-8v-uU2" firstAttribute="top" secondItem="3te-eM-ccw" secondAttribute="top" constant="10" id="seV-ar-J0J"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="RcL-YC-o5c"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ne2-LD-9LV" firstAttribute="leading" secondItem="RcL-YC-o5c" secondAttribute="leading" id="2MX-0W-FJF"/>
+                            <constraint firstItem="3te-eM-ccw" firstAttribute="width" secondItem="FAc-Rc-lCj" secondAttribute="width" multiplier="0.8" id="ALb-fj-1eR"/>
+                            <constraint firstItem="RcL-YC-o5c" firstAttribute="trailing" secondItem="ne2-LD-9LV" secondAttribute="trailing" id="KCd-s1-LQ5"/>
+                            <constraint firstItem="ne2-LD-9LV" firstAttribute="top" secondItem="FAc-Rc-lCj" secondAttribute="top" id="ZMr-l0-y5Y"/>
+                            <constraint firstItem="3te-eM-ccw" firstAttribute="centerY" secondItem="RcL-YC-o5c" secondAttribute="centerY" id="diq-md-xhO"/>
+                            <constraint firstItem="3te-eM-ccw" firstAttribute="centerX" secondItem="RcL-YC-o5c" secondAttribute="centerX" id="sHh-Zg-TFY"/>
+                            <constraint firstAttribute="bottom" secondItem="ne2-LD-9LV" secondAttribute="bottom" id="xXv-kS-hbE"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="btnNext" destination="IGi-NU-xcM" id="c4w-Tq-e4l"/>
+                        <outlet property="lblAlertTitle" destination="eb5-8v-uU2" id="zhM-LL-C5e"/>
+                        <outlet property="vAlertContainer" destination="3te-eM-ccw" id="Saa-Lb-MvL"/>
+                        <outlet property="vBackground" destination="ne2-LD-9LV" id="fzq-HH-u7Q"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bi7-PT-V5a" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="222" y="43"/>
+        </scene>
+        <!--Instruction Final View Controller-->
+        <scene sceneID="4iJ-rG-xHh">
+            <objects>
+                <viewController storyboardIdentifier="InstructionFinalViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ebG-aV-CtO" customClass="InstructionFinalViewController" customModule="My_Weather_AUS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sWy-sY-dnf">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pNN-w9-fVT">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zFC-OI-bxE">
+                                <rect key="frame" x="41.5" y="397.5" width="331" height="111.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enjoy~" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5LO-Dn-m58">
+                                        <rect key="frame" x="10" y="10" width="311" height="27.5"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="glL-gw-yzU">
+                                        <rect key="frame" x="139.5" y="67.5" width="52" height="34"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                        <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                        <state key="normal" title="Done"/>
+                                        <connections>
+                                            <action selector="btnDoneClicked:" destination="ebG-aV-CtO" eventType="touchUpInside" id="SQ9-dE-n1c"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="5LO-Dn-m58" secondAttribute="trailing" constant="10" id="8Sg-Li-xAU"/>
+                                    <constraint firstAttribute="bottom" secondItem="glL-gw-yzU" secondAttribute="bottom" constant="10" id="FhJ-qk-02d"/>
+                                    <constraint firstItem="5LO-Dn-m58" firstAttribute="top" secondItem="zFC-OI-bxE" secondAttribute="top" constant="10" id="Ize-cr-F5a"/>
+                                    <constraint firstItem="glL-gw-yzU" firstAttribute="top" secondItem="5LO-Dn-m58" secondAttribute="bottom" constant="30" id="bxC-Lz-qtT"/>
+                                    <constraint firstItem="glL-gw-yzU" firstAttribute="centerX" secondItem="zFC-OI-bxE" secondAttribute="centerX" id="usq-8f-VYF"/>
+                                    <constraint firstItem="5LO-Dn-m58" firstAttribute="leading" secondItem="zFC-OI-bxE" secondAttribute="leading" constant="10" id="vI8-1T-gBY"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="kaq-Ln-oOM"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="zFC-OI-bxE" firstAttribute="centerX" secondItem="kaq-Ln-oOM" secondAttribute="centerX" id="9Q9-rD-ETX"/>
+                            <constraint firstAttribute="bottom" secondItem="pNN-w9-fVT" secondAttribute="bottom" id="BYX-E9-Xbc"/>
+                            <constraint firstItem="pNN-w9-fVT" firstAttribute="top" secondItem="sWy-sY-dnf" secondAttribute="top" id="Df2-Nz-LNk"/>
+                            <constraint firstItem="zFC-OI-bxE" firstAttribute="width" secondItem="sWy-sY-dnf" secondAttribute="width" multiplier="0.8" id="Kk4-eB-ALc"/>
+                            <constraint firstItem="pNN-w9-fVT" firstAttribute="leading" secondItem="kaq-Ln-oOM" secondAttribute="leading" id="NSp-1e-HdM"/>
+                            <constraint firstItem="kaq-Ln-oOM" firstAttribute="trailing" secondItem="pNN-w9-fVT" secondAttribute="trailing" id="Xun-Ks-ZKN"/>
+                            <constraint firstItem="zFC-OI-bxE" firstAttribute="centerY" secondItem="kaq-Ln-oOM" secondAttribute="centerY" id="dAH-Gw-DaB"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="YJu-PV-viz"/>
+                    <connections>
+                        <outlet property="btnDone" destination="glL-gw-yzU" id="J2k-LX-OT0"/>
+                        <outlet property="lblAlertTitle" destination="5LO-Dn-m58" id="ZDR-KL-Jka"/>
+                        <outlet property="vAlertContainer" destination="zFC-OI-bxE" id="kHn-6a-Bq6"/>
+                        <outlet property="vBackground" destination="pNN-w9-fVT" id="4Ky-R6-l4Z"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O04-BH-yeU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="943" y="43"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

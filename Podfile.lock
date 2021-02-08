@@ -2,12 +2,14 @@ PODS:
   - Alamofire (5.2.2)
   - AlamofireImage (4.1.0):
     - Alamofire (~> 5.1)
+  - MXParallaxHeader (1.1.0)
   - RxSwift (6.0.0)
   - SwiftyJSON (4.3.0)
 
 DEPENDENCIES:
   - Alamofire (= 5.2.2)
   - AlamofireImage (~> 4.1)
+  - MXParallaxHeader
   - RxSwift (= 6.0.0)
   - SwiftyJSON (~> 4.0)
 
@@ -15,15 +17,17 @@ SPEC REPOS:
   https://github.com/CocoaPods/Specs:
     - Alamofire
     - AlamofireImage
+    - MXParallaxHeader
     - RxSwift
     - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: 814429acc853c6c54ff123fc3d2ef66803823ce0
   AlamofireImage: c4a2ba349885fb3064feb74d2e547bd42ce9be10
+  MXParallaxHeader: de3c867e10ba46e8f6e20c8ee1f2a910372b3b94
   RxSwift: c14e798c59b9f6e9a2df8fd235602e85cc044295
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
 
-PODFILE CHECKSUM: 4a272d2e1b0e495387495c3f16d15e1cf35ab92b
+PODFILE CHECKSUM: 30fb695690e9aa3bd883f34148ae98bbfbd9c4f4
 
 COCOAPODS: 1.10.0
