@@ -31,12 +31,7 @@ class InstructionLocationViewController: UIViewController {
     
     // MARK: - Core
     private func initUI() {
-        #if AUS
-        self.view.backgroundColor = AppGlobalManager.shared.colorAus
-        #endif
-        #if CAN
-        self.view.backgroundColor = AppGlobalManager.shared.colorCan
-        #endif
+        self.view.backgroundColor = AppGlobalManager.shared.colorTheme
         
         self.resetUI()
         self.vAlertContainer.alpha = 0.0

@@ -8,7 +8,9 @@
 import RxSwift
 import UIKit
 
-class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+
+
+class MainViewController: UIViewController, UIAdaptivePresentationControllerDelegate, UITableViewDataSource, UITableViewDelegate {
     
     var disposeBag = DisposeBag()
     
@@ -54,7 +56,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func getMyCurrentWeather() {
         if AppGlobalManager.shared.arrCity.filter({ $0.isCurrent == true }).count == 0 {
             if let dLat = LocationManager.shared.getCurrentLocation()?.coordinate.latitude, let dLon = LocationManager.shared.getCurrentLocation()?.coordinate.longitude {
-                APIManager.shared.getCityInto(lat: dLat, lon: dLon, isCurrentLocation: true)
+                APIManager.shared.getCityInfo(lat: dLat, lon: dLon, isCurrentLocation: true)
             }
         }
     }
@@ -72,6 +74,17 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
         
         return cell
+    }
+    
+    // MARK: - UIAdaptivePresentationControllerDelegate
+    public override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "SearchViewController" {
+            segue.destination.presentationController?.delegate = self
+        }
+    }
+
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        self.tvWeather.reloadData()
     }
 }
 

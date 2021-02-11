@@ -29,7 +29,11 @@
                                 <rect key="frame" x="0.0" y="813" width="414" height="49"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="vti-jW-CuH"/>
-                                    <barButtonItem image="magnifyingglass" catalog="system" id="gX7-H9-pYs"/>
+                                    <barButtonItem image="magnifyingglass" catalog="system" id="gX7-H9-pYs">
+                                        <connections>
+                                            <segue destination="S4e-fz-O2b" kind="show" identifier="SearchViewController" id="2yK-gR-GIl"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -53,6 +57,82 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="118.52678571428571"/>
+        </scene>
+        <!--Search View Controller-->
+        <scene sceneID="lo2-D3-hZk">
+            <objects>
+                <viewController storyboardIdentifier="SearchViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="S4e-fz-O2b" customClass="SearchViewController" customModule="My_Weather_AUS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="UcT-Fg-ZvT">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="e4c-Pg-DLn">
+                                <rect key="frame" x="0.0" y="56" width="414" height="752"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="S4e-fz-O2b" id="wjW-5Z-4A5"/>
+                                    <outlet property="delegate" destination="S4e-fz-O2b" id="aDC-hA-aeQ"/>
+                                </connections>
+                            </tableView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="m4Y-26-6oZ">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="S4e-fz-O2b" id="K8D-gY-Mfl"/>
+                                </connections>
+                            </searchBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9aL-5T-JsP">
+                                <rect key="frame" x="0.0" y="56" width="414" height="752"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Result" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="740-cd-xGU">
+                                        <rect key="frame" x="162.5" y="436" width="89" height="27.5"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="No-Result" translatesAutoresizingMaskIntoConstraints="NO" id="REh-GB-0hT">
+                                        <rect key="frame" x="167" y="336" width="80" height="80"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="jWL-Zb-sPM"/>
+                                            <constraint firstAttribute="width" constant="80" id="qQq-iu-n9R"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="740-cd-xGU" firstAttribute="centerX" secondItem="9aL-5T-JsP" secondAttribute="centerX" id="Aj5-Zf-Wmq"/>
+                                    <constraint firstItem="REh-GB-0hT" firstAttribute="centerX" secondItem="9aL-5T-JsP" secondAttribute="centerX" id="RSN-vb-90f"/>
+                                    <constraint firstItem="REh-GB-0hT" firstAttribute="centerY" secondItem="9aL-5T-JsP" secondAttribute="centerY" id="Rx1-4z-dhp"/>
+                                    <constraint firstItem="740-cd-xGU" firstAttribute="top" secondItem="REh-GB-0hT" secondAttribute="bottom" constant="20" id="rlS-iy-KQM"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="CIG-lq-gFr"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="9aL-5T-JsP" firstAttribute="top" secondItem="m4Y-26-6oZ" secondAttribute="bottom" id="08e-7R-ntE"/>
+                            <constraint firstItem="9aL-5T-JsP" firstAttribute="leading" secondItem="CIG-lq-gFr" secondAttribute="leading" id="4l2-f8-M8z"/>
+                            <constraint firstItem="e4c-Pg-DLn" firstAttribute="top" secondItem="m4Y-26-6oZ" secondAttribute="bottom" id="AVg-Yu-qcF"/>
+                            <constraint firstItem="CIG-lq-gFr" firstAttribute="trailing" secondItem="9aL-5T-JsP" secondAttribute="trailing" id="G0K-PG-XOM"/>
+                            <constraint firstItem="CIG-lq-gFr" firstAttribute="trailing" secondItem="m4Y-26-6oZ" secondAttribute="trailing" id="Qfu-zJ-5go"/>
+                            <constraint firstItem="CIG-lq-gFr" firstAttribute="bottom" secondItem="9aL-5T-JsP" secondAttribute="bottom" id="Uqo-Rv-WsK"/>
+                            <constraint firstItem="CIG-lq-gFr" firstAttribute="trailing" secondItem="e4c-Pg-DLn" secondAttribute="trailing" id="Zmu-eR-H48"/>
+                            <constraint firstItem="m4Y-26-6oZ" firstAttribute="leading" secondItem="CIG-lq-gFr" secondAttribute="leading" id="cEd-IJ-bEB"/>
+                            <constraint firstItem="m4Y-26-6oZ" firstAttribute="top" secondItem="CIG-lq-gFr" secondAttribute="top" id="kSo-Ap-56h"/>
+                            <constraint firstItem="CIG-lq-gFr" firstAttribute="bottom" secondItem="e4c-Pg-DLn" secondAttribute="bottom" id="nyH-gS-HVt"/>
+                            <constraint firstItem="e4c-Pg-DLn" firstAttribute="leading" secondItem="CIG-lq-gFr" secondAttribute="leading" id="reb-e9-BvV"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="L7q-vw-FbK"/>
+                    <connections>
+                        <outlet property="sbSearch" destination="m4Y-26-6oZ" id="Y1a-ph-hbt"/>
+                        <outlet property="tvLocation" destination="e4c-Pg-DLn" id="dSY-6Q-mlp"/>
+                        <outlet property="vNoResult" destination="9aL-5T-JsP" id="6t9-6W-lpJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fXb-be-26v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="904" y="119"/>
         </scene>
         <!--Loading View Controller-->
         <scene sceneID="3Pc-fL-hz0">
@@ -84,6 +164,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="No-Result" width="512" height="512"/>
         <image name="Weather" width="85.333335876464844" height="85.333335876464844"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <systemColor name="systemBackgroundColor">

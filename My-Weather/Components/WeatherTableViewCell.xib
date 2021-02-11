@@ -4,73 +4,89 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" restorationIdentifier="WeatherTableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="WeatherTableViewCell" rowHeight="70" id="KGk-i7-Jjw" customClass="WeatherTableViewCell" customModule="My_Weather_AUS" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uuP-Sx-Sbu">
-                        <rect key="frame" x="10" y="21" width="13" height="28"/>
-                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Navigation" translatesAutoresizingMaskIntoConstraints="NO" id="xAM-RK-27S">
-                        <rect key="frame" x="33" y="25" width="20" height="20"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ezt-uo-pQZ">
+                        <rect key="frame" x="10" y="10" width="300" height="70"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uuP-Sx-Sbu">
+                                <rect key="frame" x="10" y="21" width="13" height="28"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Navigation" translatesAutoresizingMaskIntoConstraints="NO" id="xAM-RK-27S">
+                                <rect key="frame" x="28" y="30" width="10" height="10"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="10" id="FT7-Ng-pR8"/>
+                                    <constraint firstAttribute="width" constant="10" id="fMR-2s-EgS"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fi2-Fc-aGL">
+                                <rect key="frame" x="216.5" y="21" width="13.5" height="28"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0hv-vp-Nz2">
+                                <rect key="frame" x="240" y="10" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="NmY-Dl-62e"/>
+                                    <constraint firstAttribute="height" constant="50" id="U7o-4D-K1D"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="20" id="FT7-Ng-pR8"/>
-                            <constraint firstAttribute="width" constant="20" id="fMR-2s-EgS"/>
+                            <constraint firstItem="fi2-Fc-aGL" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="xAM-RK-27S" secondAttribute="trailing" constant="10" id="5RU-TT-0BW"/>
+                            <constraint firstAttribute="trailing" secondItem="0hv-vp-Nz2" secondAttribute="trailing" constant="10" id="7GE-8J-nZu"/>
+                            <constraint firstItem="uuP-Sx-Sbu" firstAttribute="centerY" secondItem="Ezt-uo-pQZ" secondAttribute="centerY" id="7XZ-X6-vk3"/>
+                            <constraint firstItem="uuP-Sx-Sbu" firstAttribute="leading" secondItem="Ezt-uo-pQZ" secondAttribute="leading" constant="10" id="KBF-gx-mm4"/>
+                            <constraint firstItem="0hv-vp-Nz2" firstAttribute="leading" secondItem="fi2-Fc-aGL" secondAttribute="trailing" constant="10" id="U4a-pg-n8q"/>
+                            <constraint firstItem="xAM-RK-27S" firstAttribute="centerY" secondItem="Ezt-uo-pQZ" secondAttribute="centerY" id="aZE-vU-08R"/>
+                            <constraint firstItem="fi2-Fc-aGL" firstAttribute="centerY" secondItem="Ezt-uo-pQZ" secondAttribute="centerY" id="hjW-iX-Eng"/>
+                            <constraint firstItem="xAM-RK-27S" firstAttribute="leading" secondItem="uuP-Sx-Sbu" secondAttribute="trailing" constant="5" id="hyQ-BZ-S5g"/>
+                            <constraint firstItem="0hv-vp-Nz2" firstAttribute="centerY" secondItem="Ezt-uo-pQZ" secondAttribute="centerY" id="j2n-6R-hkD"/>
                         </constraints>
-                    </imageView>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0hv-vp-Nz2">
-                        <rect key="frame" x="260" y="10" width="50" height="50"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="50" id="NmY-Dl-62e"/>
-                            <constraint firstAttribute="height" constant="50" id="U7o-4D-K1D"/>
-                        </constraints>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fi2-Fc-aGL">
-                        <rect key="frame" x="236.5" y="21" width="13.5" height="28"/>
-                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="10"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="xAM-RK-27S" firstAttribute="leading" secondItem="uuP-Sx-Sbu" secondAttribute="trailing" constant="10" id="2ab-5y-Z9T"/>
-                    <constraint firstItem="uuP-Sx-Sbu" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="5MW-Wr-o7A"/>
-                    <constraint firstItem="0hv-vp-Nz2" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Euw-zH-8Li"/>
-                    <constraint firstAttribute="bottom" secondItem="0hv-vp-Nz2" secondAttribute="bottom" constant="10" id="HMI-p8-kfQ"/>
-                    <constraint firstItem="0hv-vp-Nz2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="WWa-Gf-pFk"/>
-                    <constraint firstItem="0hv-vp-Nz2" firstAttribute="leading" secondItem="fi2-Fc-aGL" secondAttribute="trailing" constant="10" id="esu-rx-1tW"/>
-                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="uuP-Sx-Sbu" secondAttribute="bottom" constant="10" id="gu7-My-wHa"/>
-                    <constraint firstItem="xAM-RK-27S" firstAttribute="centerY" secondItem="uuP-Sx-Sbu" secondAttribute="centerY" id="ky7-lL-0MH"/>
-                    <constraint firstItem="uuP-Sx-Sbu" firstAttribute="top" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="lew-7B-ZUY"/>
-                    <constraint firstItem="uuP-Sx-Sbu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="ltt-HO-yXR"/>
-                    <constraint firstAttribute="trailing" secondItem="0hv-vp-Nz2" secondAttribute="trailing" constant="10" id="s4Y-au-9Ng"/>
-                    <constraint firstItem="fi2-Fc-aGL" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="t4e-lO-N0n"/>
-                    <constraint firstItem="fi2-Fc-aGL" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="xAM-RK-27S" secondAttribute="trailing" constant="10" id="uWh-rg-aKb"/>
+                    <constraint firstItem="Ezt-uo-pQZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="SaH-4y-H08"/>
+                    <constraint firstAttribute="bottom" secondItem="Ezt-uo-pQZ" secondAttribute="bottom" constant="10" id="lS8-fs-hwE"/>
+                    <constraint firstItem="Ezt-uo-pQZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="qWD-HC-HgF"/>
+                    <constraint firstAttribute="trailing" secondItem="Ezt-uo-pQZ" secondAttribute="trailing" constant="10" id="qrR-4Q-KZj"/>
                 </constraints>
             </tableViewCellContentView>
-            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="imgvNavigation" destination="xAM-RK-27S" id="T7I-Ni-Vfc"/>
                 <outlet property="imgvTemp" destination="0hv-vp-Nz2" id="0DR-uD-L8B"/>
                 <outlet property="lblCity" destination="uuP-Sx-Sbu" id="I39-ko-rsk"/>
                 <outlet property="lblTemp" destination="fi2-Fc-aGL" id="7Ba-5B-ArG"/>
+                <outlet property="vWeatherContainer" destination="Ezt-uo-pQZ" id="XtK-9x-6Sn"/>
             </connections>
-            <point key="canvasLocation" x="137.68115942028987" y="119.19642857142857"/>
+            <point key="canvasLocation" x="99" y="113"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="Navigation" width="512" height="512"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

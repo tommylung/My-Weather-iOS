@@ -26,6 +26,10 @@
 		8B93425325D575FE003D5899 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B93425125D575FE003D5899 /* APIManager.swift */; };
 		8B93425F25D57888003D5899 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B93425E25D57888003D5899 /* MainViewModel.swift */; };
 		8B93426025D57888003D5899 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B93425E25D57888003D5899 /* MainViewModel.swift */; };
+		8B93427D25D58B4C003D5899 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B93427C25D58B4C003D5899 /* SearchViewController.swift */; };
+		8B93427E25D58B4C003D5899 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B93427C25D58B4C003D5899 /* SearchViewController.swift */; };
+		8B93428225D59AC0003D5899 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B93428125D59AC0003D5899 /* SearchViewModel.swift */; };
+		8B93428325D59AC0003D5899 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B93428125D59AC0003D5899 /* SearchViewModel.swift */; };
 		8BCD6D3825D17ABB00B091CC /* CityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCD6D3725D17ABB00B091CC /* CityModel.swift */; };
 		8BCD6D3D25D17BC400B091CC /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCD6D3C25D17BC400B091CC /* BaseModel.swift */; };
 		8BCD6D4425D17C3A00B091CC /* CityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCD6D3725D17ABB00B091CC /* CityModel.swift */; };
@@ -70,6 +74,8 @@
 		8B93424625D56C2F003D5899 /* InstructionLocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionLocationViewModel.swift; sourceTree = "<group>"; };
 		8B93425125D575FE003D5899 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		8B93425E25D57888003D5899 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		8B93427C25D58B4C003D5899 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		8B93428125D59AC0003D5899 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		8BCD6D3725D17ABB00B091CC /* CityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityModel.swift; sourceTree = "<group>"; };
 		8BCD6D3C25D17BC400B091CC /* BaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseModel.swift; sourceTree = "<group>"; };
 		8BCD6D5025D17DD100B091CC /* WeatherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTableViewCell.swift; sourceTree = "<group>"; };
@@ -174,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				8B93425E25D57888003D5899 /* MainViewModel.swift */,
+				8B93428125D59AC0003D5899 /* SearchViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -210,6 +217,7 @@
 			children = (
 				8BCD6D8625D18FF400B091CC /* LoadingViewController.swift */,
 				8B86613C25CD585700DE2184 /* MainViewController.swift */,
+				8B93427C25D58B4C003D5899 /* SearchViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -475,9 +483,11 @@
 				8B06BF6125CD58BE002C49DE /* SceneDelegate.swift in Sources */,
 				8BCD6D7025D18B3400B091CC /* UIColorExtension.swift in Sources */,
 				8BCD6D4725D17C3E00B091CC /* BaseModel.swift in Sources */,
+				8B93427E25D58B4C003D5899 /* SearchViewController.swift in Sources */,
 				8BCD6D5D25D180EA00B091CC /* AppGlobalManager.swift in Sources */,
 				8BEF20B325D2D2A5005E1866 /* LocationManager.swift in Sources */,
 				8BCD6D7725D18C9700B091CC /* InstructionLocationViewController.swift in Sources */,
+				8B93428325D59AC0003D5899 /* SearchViewModel.swift in Sources */,
 				8BCD6D8825D18FF400B091CC /* LoadingViewController.swift in Sources */,
 				8B93426025D57888003D5899 /* MainViewModel.swift in Sources */,
 			);
@@ -497,9 +507,11 @@
 				8B86613B25CD585700DE2184 /* SceneDelegate.swift in Sources */,
 				8BCD6D6F25D18B3400B091CC /* UIColorExtension.swift in Sources */,
 				8BCD6D3D25D17BC400B091CC /* BaseModel.swift in Sources */,
+				8B93427D25D58B4C003D5899 /* SearchViewController.swift in Sources */,
 				8BCD6D5C25D180EA00B091CC /* AppGlobalManager.swift in Sources */,
 				8BEF20B225D2D2A5005E1866 /* LocationManager.swift in Sources */,
 				8BCD6D7625D18C9700B091CC /* InstructionLocationViewController.swift in Sources */,
+				8B93428225D59AC0003D5899 /* SearchViewModel.swift in Sources */,
 				8BCD6D8725D18FF400B091CC /* LoadingViewController.swift in Sources */,
 				8B93425F25D57888003D5899 /* MainViewModel.swift in Sources */,
 			);

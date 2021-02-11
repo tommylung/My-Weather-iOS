@@ -12,6 +12,7 @@ class WeatherTableViewCell: UITableViewCell {
 
     var disposeBag = DisposeBag()
     
+    @IBOutlet weak var vWeatherContainer: UIView!
     @IBOutlet weak var lblCity: UILabel!
     @IBOutlet weak var imgvNavigation: UIImageView!
     @IBOutlet weak var lblTemp: UILabel!
@@ -37,6 +38,7 @@ class WeatherTableViewCell: UITableViewCell {
     private func initUI() {
         self.disposeBag = DisposeBag()
         
+        self.vWeatherContainer.backgroundColor = AppGlobalManager.shared.colorTheme
         self.lblCity.text = ""
         self.imgvNavigation.isHidden = true
         self.lblTemp.text = ""

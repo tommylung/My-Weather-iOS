@@ -15,8 +15,13 @@ class AppGlobalManager {
     let appid = "95d190a434083879a6398aafd54d9e73"
     
     // Global Color
-    let colorAus = UIColor.init(hex: "#3E92C7FF")
-    let colorCan = UIColor.init(hex: "#F08C83FF")
+    #if AUS
+    let colorTheme = UIColor.init(hex: "#3E92C7FF")
+    #elseif CAN
+    let colorTheme = UIColor.init(hex: "#F08C83FF")
+    #else
+    let colorTheme = UIColor.white
+    #endif
     
     // Instruction
     var bInstruction = false
