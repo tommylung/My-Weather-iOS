@@ -28,7 +28,7 @@ class LoadingViewController: UIViewController {
             let vc = UIStoryboard(name: "Instruction", bundle: nil).instantiateViewController(withIdentifier: "InstructionLocationViewController") as! InstructionLocationViewController
             vc.modalPresentationStyle = .overFullScreen
             DispatchQueue.main.async {
-                AppGlobalManager.shared.getTopMostViewController()?.present(vc, animated: true, completion: nil)
+                AppGlobalManager.shared.getTopMostViewController()?.present(vc, animated: false, completion: nil)
             }
         }
     }

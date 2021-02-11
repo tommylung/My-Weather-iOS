@@ -13,6 +13,7 @@ class WeatherTableViewCell: UITableViewCell {
     var disposeBag = DisposeBag()
     
     @IBOutlet weak var lblCity: UILabel!
+    @IBOutlet weak var imgvNavigation: UIImageView!
     @IBOutlet weak var lblTemp: UILabel!
     @IBOutlet weak var imgvTemp: UIImageView!
     
@@ -37,7 +38,14 @@ class WeatherTableViewCell: UITableViewCell {
         self.disposeBag = DisposeBag()
         
         self.lblCity.text = ""
+        self.imgvNavigation.isHidden = true
         self.lblTemp.text = ""
         self.imgvTemp.image = nil
+    }
+    
+    // MARK: - Update UI
+    func updateUI(city mCity: CityModel) {
+        self.lblCity.text = mCity.name
+        self.imgvNavigation.isHidden = !mCity.isCurrent
     }
 }

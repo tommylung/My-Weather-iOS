@@ -21,6 +21,9 @@ class AppGlobalManager {
     // Instruction
     var bInstruction = false
     
+    // Cities
+    var arrCity = [CityModel]()
+    
     func getTopMostViewController() -> UIViewController? {
         var topMostViewController = UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController
 

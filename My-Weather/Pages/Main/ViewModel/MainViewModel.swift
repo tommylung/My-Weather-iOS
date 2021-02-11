@@ -6,7 +6,6 @@
 //
 
 import Alamofire
-import CoreLocation
 import Foundation
 import RxSwift
 
@@ -55,10 +54,5 @@ class MainViewModel {
                 print("Request failed with error: \(error)")
             }
         }
-    }
-    
-    // Get Current Location
-    func getMyCurrentWeather() {
-        
     }
 }

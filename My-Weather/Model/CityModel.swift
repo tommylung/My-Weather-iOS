@@ -13,6 +13,7 @@ class CityModel: BaseModel {
     var lat: Double?
     var lon: Double?
     var country: String?
+    var isCurrent: Bool = false
     
     static func parse(json: JSON) -> CityModel {
         let obj = CityModel()
