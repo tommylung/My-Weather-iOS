@@ -76,6 +76,24 @@ class MainViewController: UIViewController, UIAdaptivePresentationControllerDele
         return cell
     }
     
+    // MARK: - UITableViewDelegate
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.tvWeather.reloadData()
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            if AppGlobalManager.shared.arrCity[indexPath.row].isCurrent {
+                let alert = UIAlertController(title: "Caution", message: "You can delete recently searched locations only.", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "Confirm", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            } else {
+                AppGlobalManager.shared.arrCity.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+        }
+    }
+    
     // MARK: - UIAdaptivePresentationControllerDelegate
     public override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SearchViewController" {
