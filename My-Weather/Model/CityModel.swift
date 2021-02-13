@@ -26,4 +26,27 @@ class CityModel: BaseModel {
         obj.state = json["state"].stringValue
         return obj
     }
+    
+    func getCityString(withSpace bSpace: Bool = false) -> String {
+        var str = ""
+        if let strName = self.name {
+            str += strName
+        }
+        if let strState = self.state, strState != "" {
+            if bSpace {
+                str += ", \(strState)"
+            } else {
+                str += ",\(strState)"
+            }
+        }
+        if let strCountry = self.country, strCountry != "" {
+            if bSpace {
+                str += ", \(strCountry)"
+            } else {
+                str += ",\(strCountry)"
+            }
+        }
+        
+        return str
+    }
 }

@@ -49,22 +49,27 @@ class WeatherTableViewCell: UITableViewCell {
     }
     
     private func bindUI() {
-        self.vm.psGotCity.subscribe(onNext: { [weak self] city in
+        self.vm.psGotCity.subscribe(onNext: { [weak self] mCity in
             guard let self = self else { return }
-            if let name = city.name {
-                self.lblCity.text = name
+            var str = ""
+            if let strCountry = mCity.country {
+                str += "\(StringUtils.getFlagEmoji(country: strCountry)) "
             }
+            if let strName = mCity.name {
+                str += strName
+            }
+            self.lblCity.text = str
         }).disposed(by: self.disposeBag)
         
-        self.vm.psGotWeather.subscribe(onNext: { [weak self] cityWeather in
+        self.vm.psGotWeather.subscribe(onNext: { [weak self] mCityWeather in
             guard let self = self else { return }
-            if let temp = cityWeather.main?.temp {
-                self.lblTemp.text = "\(Int(temp))°C"
+            if let dTemp = mCityWeather.main?.temp {
+                self.lblTemp.text = "\(Int(dTemp))°C"
             } else{
                 self.lblTemp.text = ""
             }
-            if let weatherIcon = cityWeather.weather?.first?.icon {
-                self.imgvTemp.requestImage(url: "http://openweathermap.org/img/wn/\(weatherIcon)@2x.png")
+            if let strWeatherIcon = mCityWeather.weather?.first?.icon {
+                self.imgvTemp.requestImage(url: "http://openweathermap.org/img/wn/\(strWeatherIcon)@2x.png")
             }
         }).disposed(by: self.disposeBag)
     }

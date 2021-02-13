@@ -43,14 +43,7 @@ class MainViewController: UIViewController, UIAdaptivePresentationControllerDele
         
         self.vm.psGotCityInfo.subscribe(onNext: { [weak self] (mCity, isCurrent) in
             guard let self = self else { return }
-//            if isCurrent {
-//                mCity.isCurrent = isCurrent
-//                if self.vm.arrCity.filter({ $0.isCurrent == true }).count == 0 {
-//                    self.vm.arrCity.insert(mCity, at: 0)
-//                }
-//            } else {
-//                self.vm.arrCity.append(mCity)
-//            }
+            self.vm.strCurrentLocation = mCity.getCityString()
             self.tvWeather.reloadData()
         }).disposed(by: self.disposeBag)
         
@@ -98,16 +91,14 @@ class MainViewController: UIViewController, UIAdaptivePresentationControllerDele
         
         if let strCurrentLocation = self.vm.strCurrentLocation {
             if indexPath.row == 0 {
-                cell.lblCity.text = strCurrentLocation
                 cell.vm.getLocation(city: strCurrentLocation)
                 cell.vm.getWeather(city: strCurrentLocation)
+                cell.imgvNavigation.isHidden = false
             } else {
-                cell.lblCity.text = self.vm.arrCityString[indexPath.row - 1]
                 cell.vm.getLocation(city: self.vm.arrCityString[indexPath.row - 1])
                 cell.vm.getWeather(city: self.vm.arrCityString[indexPath.row - 1])
             }
         } else {
-            cell.lblCity.text = self.vm.arrCityString[indexPath.row]
             cell.vm.getLocation(city: self.vm.arrCityString[indexPath.row])
             cell.vm.getWeather(city: self.vm.arrCityString[indexPath.row])
         }
@@ -118,6 +109,18 @@ class MainViewController: UIViewController, UIAdaptivePresentationControllerDele
     // MARK: - UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tvWeather.reloadData()
+        
+        let vc = self.storyboard?.instantiateViewController(identifier: "CityDetailViewController") as! CityDetailViewController
+        if self.vm.strCurrentLocation != nil {
+            if indexPath.row == 0 {
+                vc.vm.strCity = self.vm.strCurrentLocation
+            } else {
+                vc.vm.strCity = self.vm.arrCityString[indexPath.row - 1]
+            }
+        } else {
+            vc.vm.strCity = self.vm.arrCityString[indexPath.row]
+        }
+        self.present(vc, animated: true)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -136,14 +139,6 @@ class MainViewController: UIViewController, UIAdaptivePresentationControllerDele
                 tableView.deleteRows(at: [indexPath], with: .fade)
             }
             self.updateCitiesToUserDefault()
-//            if self.vm.arrCity[indexPath.row].isCurrent {
-//                let alert = UIAlertController(title: "Caution", message: "You can delete recently searched locations only.", preferredStyle: UIAlertController.Style.alert)
-//                alert.addAction(UIAlertAction(title: "Confirm", style: UIAlertAction.Style.default, handler: nil))
-//                self.present(alert, animated: true, completion: nil)
-//            } else {
-//                self.vm.arrCity.remove(at: indexPath.row)
-//                tableView.deleteRows(at: [indexPath], with: .fade)
-//            }
         }
     }
     

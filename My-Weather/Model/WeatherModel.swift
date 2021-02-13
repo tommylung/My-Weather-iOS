@@ -14,6 +14,14 @@ class CityWeatherModel: BaseModel {
     var base: String?
     var main: WeatherMainModel?
     var visibility: Int?
+    var wind: WindModel?
+    var clouds: CloudModel?
+    var dt: Int?
+    var sys: SystemModel?
+    var timezone: Int?
+    var id: Int?
+    var name: String?
+    var cod: Int?
     
     static func parse(json: JSON) -> CityWeatherModel {
         let obj = CityWeatherModel()
@@ -22,6 +30,14 @@ class CityWeatherModel: BaseModel {
         obj.base = json["base"].stringValue
         obj.main = WeatherMainModel.parse(json: json["main"])
         obj.visibility = json["visibility"].intValue
+        obj.wind = WindModel.parse(json: json["wind"])
+        obj.clouds = CloudModel.parse(json: json["clouds"])
+        obj.dt = json["dt"].intValue
+        obj.sys = SystemModel.parse(json: json["sys"])
+        obj.timezone = json["timezone"].intValue
+        obj.id = json["id"].intValue
+        obj.name = json["name"].stringValue
+        obj.cod = json["cod"].intValue
         return obj
     }
 }
@@ -59,7 +75,7 @@ class WeatherMainModel: BaseModel {
     var feelsLike: Double?
     var tempMin: Double?
     var tempMax: Double?
-    var pressure: Double?
+    var pressure: Int?
     var humidity: Double?
     
     static func parse(json: JSON) -> WeatherMainModel {
@@ -68,56 +84,48 @@ class WeatherMainModel: BaseModel {
         obj.feelsLike = json["feels_like"].doubleValue
         obj.tempMin = json["temp_min"].doubleValue
         obj.tempMax = json["temp_max"].doubleValue
-        obj.pressure = json["pressure"].doubleValue
+        obj.pressure = json["pressure"].intValue
         obj.humidity = json["humidity"].doubleValue
         return obj
     }
 }
 
+class WindModel: BaseModel {
+    var speed: Double?
+    var deg: Int?
+    
+    static func parse(json: JSON) -> WindModel {
+        let obj = WindModel()
+        obj.speed = json["speed"].doubleValue
+        obj.deg = json["deg"].intValue
+        return obj
+    }
+}
 
+class CloudModel: BaseModel {
+    var all: Int?
+    
+    static func parse(json: JSON) -> CloudModel {
+        let obj = CloudModel()
+        obj.all = json["all"].intValue
+        return obj
+    }
+}
 
-/*
- {
-     "coord": {
-         "lon": -0.1257,
-         "lat": 51.5085
-     },
-     "weather": [
-         {
-             "id": 804,
-             "main": "Clouds",
-             "description": "overcast clouds",
-             "icon": "04n"
-         }
-     ],
-     "base": "stations",
-     "main": {
-         "temp": 269.3,
-         "feels_like": 262.01,
-         "temp_min": 268.71,
-         "temp_max": 270.37,
-         "pressure": 1033,
-         "humidity": 68
-     },
-     "visibility": 10000,
-     "wind": {
-         "speed": 6.17,
-         "deg": 100
-     },
-     "clouds": {
-         "all": 100
-     },
-     "dt": 1613200610,
-     "sys": {
-         "type": 1,
-         "id": 1414,
-         "country": "GB",
-         "sunrise": 1613200692,
-         "sunset": 1613236286
-     },
-     "timezone": 0,
-     "id": 2643743,
-     "name": "London",
-     "cod": 200
- }
- */
+class SystemModel: BaseModel {
+    var type: Int?
+    var id: Int?
+    var country: String?
+    var sunrise: Int?
+    var sunset: Int?
+    
+    static func parse(json: JSON) -> SystemModel {
+        let obj = SystemModel()
+        obj.type = json["type"].intValue
+        obj.id = json["id"].intValue
+        obj.country = json["country"].stringValue
+        obj.sunrise = json["sunrise"].intValue
+        obj.sunset = json["sunset"].intValue
+        return obj
+    }
+}

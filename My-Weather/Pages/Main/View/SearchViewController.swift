@@ -65,20 +65,7 @@ class SearchViewController: UIViewController, UIAdaptivePresentationControllerDe
         let cell = UITableViewCell()
         
         if self.vm.arrSearchedCity.count > indexPath.row {
-            var strCity = ""
-            if let strName = self.vm.arrSearchedCity[indexPath.row].name {
-                strCity += strName
-            } else {
-                strCity += "nil"
-            }
-            if let strState = self.vm.arrSearchedCity[indexPath.row].state, strState != "" {
-                strCity += ", \(strState)"
-            }
-            if let strCountry = self.vm.arrSearchedCity[indexPath.row].country {
-                strCity += ", \(strCountry)"
-            }
-                
-            cell.textLabel?.text = strCity
+            cell.textLabel?.text = self.vm.arrSearchedCity[indexPath.row].getCityString(withSpace: true)
         }
         
         return cell
@@ -86,24 +73,18 @@ class SearchViewController: UIViewController, UIAdaptivePresentationControllerDe
     
     // MARK: - UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        var arrCity = UserDefaults.standard.object(forKey: UserDefaultsKey.cities)
-//        arrCity.append(self.vm.arrSearchedCity[indexPath.row])
-//        UserDefaults.standard.set(arrCity, forKey: UserDefaultsKey.cities)
-//        UserDefaults.standard.synchronize()
+        let strCity = self.vm.arrSearchedCity[indexPath.row].getCityString()
         
-        var strCity = ""
-        if let strName = self.vm.arrSearchedCity[indexPath.row].name {
-            strCity += strName
-        }
-        if let strState = self.vm.arrSearchedCity[indexPath.row].state, strState != "" {
-            strCity += ",\(strState)"
-        }
-        if let strCountry = self.vm.arrSearchedCity[indexPath.row].country {
-            strCity += ",\(strCountry)"
-        }
-        
+        var bSame = false
         var arrCity = UserDefaults.standard.object(forKey: UserDefaultsKey.cities) as? [String] ?? [String]()
-        arrCity.append(strCity)
+        arrCity.forEach {
+            if strCity == $0 {
+                bSame = true
+            }
+        }
+        if !bSame {
+            arrCity.append(strCity)
+        }
         UserDefaults.standard.set(arrCity, forKey: UserDefaultsKey.cities)
         
         self.presentationController?.delegate?.presentationControllerDidDismiss?(self.presentationController!)
