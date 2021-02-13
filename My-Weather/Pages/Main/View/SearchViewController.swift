@@ -86,7 +86,26 @@ class SearchViewController: UIViewController, UIAdaptivePresentationControllerDe
     
     // MARK: - UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        AppGlobalManager.shared.arrCity.append(self.vm.arrSearchedCity[indexPath.row])
+//        var arrCity = UserDefaults.standard.object(forKey: UserDefaultsKey.cities)
+//        arrCity.append(self.vm.arrSearchedCity[indexPath.row])
+//        UserDefaults.standard.set(arrCity, forKey: UserDefaultsKey.cities)
+//        UserDefaults.standard.synchronize()
+        
+        var strCity = ""
+        if let strName = self.vm.arrSearchedCity[indexPath.row].name {
+            strCity += strName
+        }
+        if let strState = self.vm.arrSearchedCity[indexPath.row].state, strState != "" {
+            strCity += ",\(strState)"
+        }
+        if let strCountry = self.vm.arrSearchedCity[indexPath.row].country {
+            strCity += ",\(strCountry)"
+        }
+        
+        var arrCity = UserDefaults.standard.object(forKey: UserDefaultsKey.cities) as? [String] ?? [String]()
+        arrCity.append(strCity)
+        UserDefaults.standard.set(arrCity, forKey: UserDefaultsKey.cities)
+        
         self.presentationController?.delegate?.presentationControllerDidDismiss?(self.presentationController!)
         self.dismiss(animated: true)
     }

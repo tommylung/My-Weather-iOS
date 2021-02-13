@@ -11,21 +11,34 @@ import RxSwift
 import SwiftyJSON
 
 class WeatherTableViewModel {
-    let psGotCurrentWeather = PublishSubject<CityWeatherModel>()
+    let psGotCity = PublishSubject<CityModel>()
+    let psGotWeather = PublishSubject<CityWeatherModel>()
     
-    func getCurrentWeather(city mCity: CityModel) {
+    func getLocation(city strCity: String) {
         var params = Parameters()
-        var strQ = ""
-        if let strCity = mCity.name {
-            strQ += strCity
+        params["q"] = strCity
+        params["limit"] = 1
+        params["appid"] = AppGlobalManager.shared.appid
+        
+        AF.request("https://api.openweathermap.org/geo/1.0/direct", method: .get, parameters: params).responseJSON { response in
+            switch response.result {
+            case .success(let json):
+                if let arrDictionary = json as? Array<NSDictionary> {
+                    var arrJson = [CityModel]()
+                    arrDictionary.forEach {
+                        arrJson.append(CityModel.parse(json: JSON($0)))
+                    }
+                    self.psGotCity.onNext(arrJson.first ?? CityModel())
+                }
+            case .failure(let error):
+                print("Request failed with error: \(error)")
+            }
         }
-        if let strState = mCity.state {
-            strQ += ",\(strState)"
-        }
-        if let strCountry = mCity.country {
-            strQ += ",\(strCountry)"
-        }
-        params["q"] = strQ
+    }
+    
+    func getWeather(city strCity: String) {
+        var params = Parameters()
+        params["q"] = strCity
         params["appid"] = AppGlobalManager.shared.appid
         params["units"] = "metric"
         
@@ -33,7 +46,7 @@ class WeatherTableViewModel {
             switch response.result {
             case .success(let json):
                 if let dictJson = json as? NSDictionary {
-                    self.psGotCurrentWeather.onNext(CityWeatherModel.parse(json: JSON(dictJson)))
+                    self.psGotWeather.onNext(CityWeatherModel.parse(json: JSON(dictJson)))
                 }
             case .failure(let error):
                 print("Request failed with error: \(error)")

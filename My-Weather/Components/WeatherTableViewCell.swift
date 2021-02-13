@@ -49,7 +49,14 @@ class WeatherTableViewCell: UITableViewCell {
     }
     
     private func bindUI() {
-        self.vm.psGotCurrentWeather.subscribe(onNext: { [weak self] cityWeather in
+        self.vm.psGotCity.subscribe(onNext: { [weak self] city in
+            guard let self = self else { return }
+            if let name = city.name {
+                self.lblCity.text = name
+            }
+        }).disposed(by: self.disposeBag)
+        
+        self.vm.psGotWeather.subscribe(onNext: { [weak self] cityWeather in
             guard let self = self else { return }
             if let temp = cityWeather.main?.temp {
                 self.lblTemp.text = "\(Int(temp))°C"

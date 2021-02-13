@@ -17,7 +17,7 @@ class AppGlobalManager {
     static let shared = AppGlobalManager()
     
     // Global Id
-    let appid = "95d190a434083879a6398aafd54d9e73"
+    let appid = "f7d7c778c14b97f446b6a502b448d238"
     
     // Global Color
     #if AUS
@@ -28,16 +28,11 @@ class AppGlobalManager {
     let colorTheme = UIColor.white
     #endif
     
-    // Instruction
-    var bInstruction: Bool {
-        let b = UserDefaults.standard.bool(forKey: UserDefaultsKey.instruction)
-        UserDefaults.standard.set(b, forKey: UserDefaultsKey.instruction)
-        UserDefaults.standard.synchronize()
-        return b
-    }
-    
     // Cities
-    var arrCity = [CityModel]()
+//    var arrCity = [CityModel]() {
+//        if let arr = UserDefaults.standard.array(forKey: UserDefaultsKey.cities)
+//        return arr
+//    }
     
     func getTopMostViewController() -> UIViewController? {
         var topMostViewController = UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController
