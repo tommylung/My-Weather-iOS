@@ -16,7 +16,7 @@ class LoadingViewController: UIViewController {
     
     // MARK: - Core
     private func initUI() {
-        if AppGlobalManager.shared.bInstruction {
+        if UserDefaults.standard.bool(forKey: UserDefaultsKey.instruction) {
             // Go to Main
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainViewController") as! MainViewController
             vc.modalPresentationStyle = .overFullScreen

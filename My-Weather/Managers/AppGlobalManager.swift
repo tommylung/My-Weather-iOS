@@ -8,6 +8,11 @@
 import Foundation
 import UIKit
 
+struct UserDefaultsKey {
+    static let instruction = "UserDefaultsInstruction"
+    static let cities = "UserDefaultsCities"
+}
+
 class AppGlobalManager {
     static let shared = AppGlobalManager()
     
@@ -24,7 +29,12 @@ class AppGlobalManager {
     #endif
     
     // Instruction
-    var bInstruction = false
+    var bInstruction: Bool {
+        let b = UserDefaults.standard.bool(forKey: UserDefaultsKey.instruction)
+        UserDefaults.standard.set(b, forKey: UserDefaultsKey.instruction)
+        UserDefaults.standard.synchronize()
+        return b
+    }
     
     // Cities
     var arrCity = [CityModel]()

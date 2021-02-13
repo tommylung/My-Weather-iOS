@@ -10,6 +10,7 @@ import UIKit
 
 class WeatherTableViewCell: UITableViewCell {
 
+    var vm = WeatherTableViewModel()
     var disposeBag = DisposeBag()
     
     @IBOutlet weak var vWeatherContainer: UIView!
@@ -21,11 +22,13 @@ class WeatherTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.initUI()
+        self.bindUI()
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         self.initUI()
+        self.bindUI()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -43,6 +46,20 @@ class WeatherTableViewCell: UITableViewCell {
         self.imgvNavigation.isHidden = true
         self.lblTemp.text = ""
         self.imgvTemp.image = nil
+    }
+    
+    private func bindUI() {
+        self.vm.psGotCurrentWeather.subscribe(onNext: { [weak self] cityWeather in
+            guard let self = self else { return }
+            if let temp = cityWeather.main?.temp {
+                self.lblTemp.text = "\(Int(temp))°C"
+            } else{
+                self.lblTemp.text = ""
+            }
+            if let weatherIcon = cityWeather.weather?.first?.icon {
+                self.imgvTemp.requestImage(url: "http://openweathermap.org/img/wn/\(weatherIcon)@2x.png")
+            }
+        }).disposed(by: self.disposeBag)
     }
     
     // MARK: - Update UI

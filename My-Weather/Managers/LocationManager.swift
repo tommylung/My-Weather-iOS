@@ -15,7 +15,8 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     private var currentLocation: CLLocation?
     
-    let psChangedAuthorization = PublishSubject<Void>()
+    let psUpdatedCurrentLocation = PublishSubject<CLLocation>()
+    let psChangedAuthorization = PublishSubject<CLAuthorizationStatus>()
     
     override init() {
         super.init()
@@ -30,7 +31,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     
     func startTracking() {
         let status = CLLocationManager.authorizationStatus()
-        if status == .authorizedWhenInUse {
+        if status == .authorizedWhenInUse || status == .authorizedAlways {
             self.locationManager.startUpdatingLocation()
         } else {
             self.requestAuthorization()
@@ -63,15 +64,18 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         print("[LocationManager] didUpdateLocations \(location) \(location.horizontalAccuracy)")
         if (location.horizontalAccuracy > 200) { return }
         self.currentLocation = locations.last
+        if let currentLocation = self.currentLocation {
+            self.psUpdatedCurrentLocation.onNext(currentLocation)
+        }
     }
   
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch status {
-        case .notDetermined, .authorizedAlways, .authorizedWhenInUse:
+        case .authorizedAlways, .authorizedWhenInUse:
             self.locationManager.startUpdatingLocation()
-            self.psChangedAuthorization.onNext(())
+            self.psChangedAuthorization.onNext(status)
         default:
-            self.psChangedAuthorization.onNext(())
+            self.psChangedAuthorization.onNext(status)
         }
     }
 }

@@ -32,9 +32,9 @@ class SearchViewController: UIViewController, UIAdaptivePresentationControllerDe
     }
     
     private func bindUI() {
-        APIManager.shared.psGotCitiesInfo.subscribe(onNext: { [weak self] arrCity in
+        self.vm.psGotCitiesInfo.subscribe(onNext: { [weak self] arrCity in
             guard let self = self else { return }
-            self.vm.arrCity = arrCity
+            self.vm.arrSearchedCity = arrCity
             
             self.tvLocation.isHidden = (arrCity.count == 0)
             self.vNoResult.isHidden = !(arrCity.count == 0)
@@ -49,7 +49,7 @@ class SearchViewController: UIViewController, UIAdaptivePresentationControllerDe
     // MARK: - UISearchBarDelegate
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let strKeyword = searchBar.text {
-            APIManager.shared.getCitiesInfo(keyword: strKeyword)
+            self.vm.getCitiesInfo(keyword: strKeyword)
         } else {
             self.tvLocation.isHidden = true
             self.vNoResult.isHidden = false
@@ -58,23 +58,23 @@ class SearchViewController: UIViewController, UIAdaptivePresentationControllerDe
     
     // MARK: - UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.vm.arrCity.count
+        return self.vm.arrSearchedCity.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
         
-        if self.vm.arrCity.count > indexPath.row {
+        if self.vm.arrSearchedCity.count > indexPath.row {
             var strCity = ""
-            if let strName = self.vm.arrCity[indexPath.row].name {
+            if let strName = self.vm.arrSearchedCity[indexPath.row].name {
                 strCity += strName
             } else {
                 strCity += "nil"
             }
-            if let strState = self.vm.arrCity[indexPath.row].state, strState != "" {
+            if let strState = self.vm.arrSearchedCity[indexPath.row].state, strState != "" {
                 strCity += ", \(strState)"
             }
-            if let strCountry = self.vm.arrCity[indexPath.row].country {
+            if let strCountry = self.vm.arrSearchedCity[indexPath.row].country {
                 strCity += ", \(strCountry)"
             }
                 
@@ -86,7 +86,7 @@ class SearchViewController: UIViewController, UIAdaptivePresentationControllerDe
     
     // MARK: - UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        AppGlobalManager.shared.arrCity.append(self.vm.arrCity[indexPath.row])
+        AppGlobalManager.shared.arrCity.append(self.vm.arrSearchedCity[indexPath.row])
         self.presentationController?.delegate?.presentationControllerDidDismiss?(self.presentationController!)
         self.dismiss(animated: true)
     }

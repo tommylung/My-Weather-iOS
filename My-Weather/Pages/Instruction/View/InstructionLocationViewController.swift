@@ -9,7 +9,7 @@ import RxSwift
 import UIKit
 
 enum InstructionStep {
-    case initial, final
+    case initial, final, notAllow
 }
 
 class InstructionLocationViewController: UIViewController {
@@ -35,18 +35,24 @@ class InstructionLocationViewController: UIViewController {
         
         self.resetUI()
         self.vAlertContainer.alpha = 0.0
-        self.step = .initial
-        self.updateUI()
-        self.showAlert()
+//        self.step = .initial
+//        self.updateUI()
+//        self.showAlert()
     }
     
     private func bindUI() {
         self.disposeBag = DisposeBag()
         
-        LocationManager.shared.psChangedAuthorization.subscribe(onNext: { [weak self] in
+        LocationManager.shared.psChangedAuthorization.subscribe(onNext: { [weak self] status in
             guard let self = self else { return }
             self.hideAlert()
-            self.step = .final
+            if status == .notDetermined {
+                self.step = .initial
+            } else if status == .authorizedAlways || status == .authorizedWhenInUse {
+                self.step = .final
+            } else if status == .denied || status == .restricted {
+                self.step = .notAllow
+            }
             self.updateUI()
             self.showAlert()
         }).disposed(by: self.disposeBag)
@@ -68,6 +74,10 @@ class InstructionLocationViewController: UIViewController {
             self.lblAlertTitle.text = "Enjoy~"
             self.vAlertAllow.isHidden = true
             self.btnAlertBottom.setTitle("Done", for: .normal)
+        } else if self.step == .notAllow {
+            self.lblAlertTitle.text = "If you want to get current location weather, please allow to use your location on setting."
+            self.vAlertAllow.isHidden = true
+            self.btnAlertBottom.setTitle("Done", for: .normal)
         }
     }
     
@@ -87,22 +97,21 @@ class InstructionLocationViewController: UIViewController {
     @IBAction func btnAlertBottomClicked(_ sender: Any) {
         if self.step == .initial {
             LocationManager.shared.requestAuthorization()
-            AppGlobalManager.shared.bInstruction = true
-        } else if self.step == .final {
+        } else if self.step == .final || self.step == .notAllow {
             self.goToMain()
         }
     }
     
     func goToMain() {
+        UserDefaults.standard.set(true, forKey: UserDefaultsKey.instruction)
+        
         // Go to Main
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainViewController") as! MainViewController
         vc.modalPresentationStyle = .overFullScreen
         DispatchQueue.main.async {
             AppGlobalManager.shared.getTopMostViewController()?.present(vc, animated: true, completion: nil)
         }
-
     }
-    
 
     /*
     // MARK: - Navigation
