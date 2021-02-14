@@ -17,7 +17,7 @@ class AppGlobalManager {
     static let shared = AppGlobalManager()
     
     // Global Id
-    let appid = "f7d7c778c14b97f446b6a502b448d238"
+    let appid = "95d190a434083879a6398aafd54d9e73"
     
     // Global Color
     #if AUS
