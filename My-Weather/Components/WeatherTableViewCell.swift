@@ -27,7 +27,6 @@ class WeatherTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        self.initUI()
         self.bindUI()
     }
 
@@ -39,8 +38,6 @@ class WeatherTableViewCell: UITableViewCell {
     
     // MARK: - Core
     private func initUI() {
-        self.disposeBag = DisposeBag()
-        
         self.vWeatherContainer.backgroundColor = AppGlobalManager.shared.colorTheme
         self.lblCity.text = ""
         self.imgvNavigation.isHidden = true
@@ -49,6 +46,8 @@ class WeatherTableViewCell: UITableViewCell {
     }
     
     private func bindUI() {
+        self.disposeBag = DisposeBag()
+        
         self.vm.psGotCity.subscribe(onNext: { [weak self] mCity in
             guard let self = self else { return }
             var str = ""

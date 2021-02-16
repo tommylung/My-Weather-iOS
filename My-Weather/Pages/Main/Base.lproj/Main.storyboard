@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="90" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vgy-7M-K4r">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="90" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vgy-7M-K4r">
                                 <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <connections>
@@ -28,6 +28,11 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WtM-rp-V9E">
                                 <rect key="frame" x="0.0" y="813" width="414" height="49"/>
                                 <items>
+                                    <barButtonItem image="trash" catalog="system" id="vuZ-dA-RGt">
+                                        <connections>
+                                            <action selector="btnTrashClicked:" destination="BYZ-38-t0r" id="ueD-BZ-H0U"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="vti-jW-CuH"/>
                                     <barButtonItem image="magnifyingglass" catalog="system" id="gX7-H9-pYs">
                                         <connections>
@@ -51,6 +56,7 @@
                     </view>
                     <connections>
                         <outlet property="bbiSearch" destination="gX7-H9-pYs" id="OZ5-Sy-zpf"/>
+                        <outlet property="bbiTrash" destination="vuZ-dA-RGt" id="09O-JD-kEd"/>
                         <outlet property="tvWeather" destination="vgy-7M-K4r" id="1qB-IX-EVI"/>
                     </connections>
                 </viewController>
@@ -444,6 +450,7 @@
         <image name="No-Result" width="512" height="512"/>
         <image name="Weather" width="85.333335876464844" height="85.333335876464844"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <image name="trash" catalog="system" width="121" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

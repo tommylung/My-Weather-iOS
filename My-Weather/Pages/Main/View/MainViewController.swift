@@ -18,7 +18,10 @@ class MainViewController: UIViewController, UIAdaptivePresentationControllerDele
     // Weather
     @IBOutlet weak var tvWeather: UITableView!
     // Toolbar
+    @IBOutlet weak var bbiTrash: UIBarButtonItem!
     @IBOutlet weak var bbiSearch: UIBarButtonItem!
+    
+    var bEditing: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,19 +111,57 @@ class MainViewController: UIViewController, UIAdaptivePresentationControllerDele
     
     // MARK: - UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.tvWeather.reloadData()
-        
-        let vc = self.storyboard?.instantiateViewController(identifier: "CityDetailViewController") as! CityDetailViewController
+        if !tableView.isEditing {
+            self.tvWeather.reloadData()
+            
+            let vc = self.storyboard?.instantiateViewController(identifier: "CityDetailViewController") as! CityDetailViewController
+            if self.vm.strCurrentLocation != nil {
+                if indexPath.row == 0 {
+                    vc.vm.strCity = self.vm.strCurrentLocation
+                } else {
+                    vc.vm.strCity = self.vm.arrCityString[indexPath.row - 1]
+                }
+            } else {
+                vc.vm.strCity = self.vm.arrCityString[indexPath.row]
+            }
+            self.present(vc, animated: true)
+        } else {
+            var strCity = ""
+            if self.vm.strCurrentLocation != nil {
+                strCity = self.vm.arrCityString[indexPath.row - 1]
+            } else {
+                strCity = self.vm.arrCityString[indexPath.row]
+            }
+            self.addRemoveTrash(city: strCity)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if tableView.isEditing {
+            var strCity = ""
+            if self.vm.strCurrentLocation != nil {
+                strCity = self.vm.arrCityString[indexPath.row - 1]
+            } else {
+                strCity = self.vm.arrCityString[indexPath.row]
+            }
+            self.addRemoveTrash(city: strCity)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         if self.vm.strCurrentLocation != nil {
             if indexPath.row == 0 {
-                vc.vm.strCity = self.vm.strCurrentLocation
+                return false
             } else {
-                vc.vm.strCity = self.vm.arrCityString[indexPath.row - 1]
+                return true
             }
         } else {
-            vc.vm.strCity = self.vm.arrCityString[indexPath.row]
+            return true
         }
-        self.present(vc, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -142,6 +183,26 @@ class MainViewController: UIViewController, UIAdaptivePresentationControllerDele
         }
     }
     
+    private func addRemoveTrash(city strCity: String) {
+        var bRemove = false
+        var iRemoveIndex = 0
+        
+        for (index, str) in self.vm.arrTrashString.enumerated() {
+            if strCity == str {
+                bRemove = true
+                iRemoveIndex = index
+            }
+        }
+        
+        if bRemove {
+            self.vm.arrTrashString.remove(at: iRemoveIndex)
+        } else {
+            self.vm.arrTrashString.append(strCity)
+        }
+        
+        self.setTrashButton()
+    }
+    
     // MARK: - UIAdaptivePresentationControllerDelegate
     public override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SearchViewController" {
@@ -151,6 +212,40 @@ class MainViewController: UIViewController, UIAdaptivePresentationControllerDele
 
     func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
         self.getCitiesFromUserDefault()
+    }
+    
+    // MARK: - Action
+    @IBAction func btnTrashClicked(_ sender: Any) {
+        self.tvWeather.setEditing(!self.bEditing, animated: true)
+        self.bEditing = !self.bEditing
+        
+        // Clear the trash
+        for strTrash in self.vm.arrTrashString {
+            if let iIndexCity = self.vm.arrCityString.firstIndex(of: strTrash) {
+                self.vm.arrCityString.remove(at: iIndexCity)
+            }
+        }
+        self.updateCitiesToUserDefault()
+        
+        // Update UI
+        if self.bEditing {
+            self.bbiTrash.image = nil
+            self.bbiTrash.title = "Done"
+        } else {
+            self.bbiTrash.image = UIImage.init(systemName: "trash")
+            self.bbiTrash.title = nil
+        }
+        
+        self.vm.arrTrashString.removeAll()
+        self.tvWeather.reloadData()
+    }
+    
+    private func setTrashButton() {
+        if self.vm.arrTrashString.count > 0 {
+            self.bbiTrash.title = "Remove"
+        } else {
+            self.bbiTrash.title = "Done"
+        }
     }
 }
 

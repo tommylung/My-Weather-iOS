@@ -19,7 +19,7 @@ class MainViewModel {
     // including current location city
     var strCurrentLocation: String?
     var arrCityString = [String]()
-//    var arrCity = [CityModel]()
+    var arrTrashString = [String]()
     
     // Getter
     func getCityInfo(lat dLat: Double, lon dLon: Double, isCurrentLocation bCurrentLocation: Bool = false) {
